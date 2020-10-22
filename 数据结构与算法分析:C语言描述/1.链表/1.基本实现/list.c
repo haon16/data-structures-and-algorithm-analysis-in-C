@@ -7,7 +7,18 @@ struct Node
     Position Next;
 };
 
-List MakeEmpty(List L);
+List MakeEmpty(List L)
+{
+    if (L != NULL)
+        DeleteList(L);
+    
+    L = (List)malloc(sizeof(struct Node));
+    if (L == NULL)
+        FatalError("Out of space");
+    
+    L->Next = NULL;
+    return L;
+}
 
 int IsEmpty(List L)
 {
@@ -31,7 +42,7 @@ Position Find(ElementType X, List L)
 void Delete(ElementType X, List L)
 {
     Position P = FindPrevious(X, L);
-    if (P != NULL)
+    if (!IsLast(P, L))
     {
         Position Temp = P->Next;
         P->Next = Temp->Next;
@@ -39,16 +50,69 @@ void Delete(ElementType X, List L)
     }
 }
 
-Position FindPrevious(ElementType X, List L);
+Position FindPrevious(ElementType X, List L)
+{
+    Position P = L;
+    while(P->Next != NULL && P->Next->Element != X)
+        P = P->Next;
+    
+    return P;
+}
 
-void Insert(ElementType X, List L, Position P);
+void Insert(ElementType X, List L, Position P)
+{
+    Position Temp = (Position)malloc(sizeof(struct Node));
+    if(Temp == NULL)
+        FatalError("Out of space!!!");
+    
+    Temp->Element = X;
+    Temp->Next = P->Next;
+    P->Next = Temp;
+}
 
-void DeleteList(List L);
+void DeleteList(List L)
+{
+    Position P, Temp;
+    P = L->Next;
+    L->Next = NULL;
+    while(P != NULL)
+    {
+        Temp = P->Next;
+        free(Temp);
+        P = Temp;
+    }
+}
 
-Position Header(List L);
+Position Header(List L)
+{
+    return L;
+}
 
-Position First(List L);
+Position First(List L)
+{
+    return L->Next;
+}
 
-Position Advance(Position P);
+Position Advance(Position P)
+{
+    return P->Next;
+}
 
-ElementType Retrieve(Position P);
+ElementType Retrieve(Position P)
+{
+    return P->Element;
+}
+
+void PrintList(List L)
+{
+    if (L == NULL)
+        return;
+    
+    Position P = L->Next;
+    while (P != NULL)
+    {
+        printf("%d ", P->Element);
+        P = P->Next;
+    }
+    printf("\n");
+}

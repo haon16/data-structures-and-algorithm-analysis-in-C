@@ -43,4 +43,7 @@ Position Advance(Position P);
 //获得指定结点的数据项
 ElementType Retrieve(Position P);
 
+//遍历输出链表
+void PrintList(List L);
+
 #endif      /* _List_H */
