@@ -1,3 +1,6 @@
+//2020年10月23日18点20分
+//测试数组实现的栈
+
 #include <stdio.h>
 #include "arrayStack.h"
 

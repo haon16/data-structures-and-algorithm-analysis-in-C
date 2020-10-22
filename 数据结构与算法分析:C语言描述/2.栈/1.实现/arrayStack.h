@@ -1,3 +1,6 @@
+//2020年10月23日18点20分
+//栈的数组实现
+
 #ifndef _ArrayStack_H
 
 #include "../../base.h"

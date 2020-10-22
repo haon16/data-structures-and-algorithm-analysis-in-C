@@ -1,3 +1,6 @@
+//2020年10月23日18点20分
+//栈的数组实现
+
 #include <stdio.h>
 #include "arrayStack.h"
 
@@ -90,7 +93,7 @@ void PrintStack(Stack S)
     if(S == NULL)
         return;
     
-    for(int i = 0; i <= S->TopOfStack; i++)
+    for(int i = S->TopOfStack; i > EmptyTOS; i--)
     {
         printf("%d ", S->Array[i]);
     }

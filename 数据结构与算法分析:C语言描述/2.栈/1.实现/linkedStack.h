@@ -1,3 +1,6 @@
+//2020年10月23日 16:46:27
+//栈的链表实现
+
 #ifndef _LinkedStack_H
 
 #include "../../base.h"

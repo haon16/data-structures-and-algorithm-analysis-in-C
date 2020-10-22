@@ -1,3 +1,6 @@
+//2020年10月23日 16:46:27
+//栈的链表实现
+
 #include <stdio.h>
 #include "linkedStack.h"
 

@@ -1,3 +1,6 @@
+//2020年10月22日 10:15:02
+//链表实现
+
 #include <stdio.h>
 #include "list.h"
 
