@@ -1,8 +1,8 @@
 //2020年10月23日 16:46:27
 //测试链表实现的栈
 
-#include "linkedStack.h"
 #include <stdio.h>
+#include "linkedStack.h"
 
 int main()
 {

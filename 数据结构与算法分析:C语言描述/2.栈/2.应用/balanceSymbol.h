@@ -3,6 +3,8 @@
 
 #ifndef _BalanceSymbol_H
 
+#include <stdio.h>
+
 //检查符号是否平衡
 void CheckBalanceSymbol(FILE *fp);
 

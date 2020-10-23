@@ -1,8 +1,8 @@
 //2020年10月22日 10:15:02
 //测试链表
 
-#include "list.h"
 #include <stdio.h>
+#include "list.h"
 
 int main()
 {
