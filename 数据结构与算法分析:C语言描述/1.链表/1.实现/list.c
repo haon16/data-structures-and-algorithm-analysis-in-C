@@ -14,7 +14,7 @@ List MakeEmpty(List L)
     
     L = (List)malloc(sizeof(struct Node));
     if (L == NULL)
-        FatalError("Out of space");
+        FatalError("Out of space!!!");
     
     L->Next = NULL;
     return L;

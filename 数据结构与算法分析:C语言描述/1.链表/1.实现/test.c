@@ -1,9 +1,11 @@
+//2020年10月23日 10:15:02
 #include "list.h"
+#include <stdio.h>
 
 int main()
 {
-    List L;
-    MakeEmpty(L);
+    List L = NULL;
+    L = MakeEmpty(L);
 
     Insert(1, L, L);
     Insert(2, L, L);
@@ -14,9 +16,9 @@ int main()
 
     int X;
     printf("请输入要查找的数：");
-    scanf(&X);
+    scanf("%d", &X);
     char msg[20];
-    sprintf(msg, "在链表中%s%d\n",Find(X, L)?"存在":"不存在", X);
+    sprintf(msg, "在链表中%s%d",Find(X, L)?"存在":"不存在", X);
     puts(msg);
 
     Delete(3,L);
@@ -25,6 +27,5 @@ int main()
 
     DeleteList(L);
     PrintList(L);    
-
     return 0;
 }
