@@ -5,11 +5,14 @@
 
 #include "../../base.h"
 
-typedef struct TreeNode *PtrToNode;
-typedef PtrToNode Tree;
+typedef struct TreeNode *PtrToTreeNode;
+typedef PtrToTreeNode Tree;
 
 //创建二叉树
 Tree CreatBinaryTree();
+
+//按层创建二叉树
+Tree CreatBinaryTreeByLevel();
 
 //先序遍历
 void PreorderTraversal(Tree T);
@@ -20,10 +23,19 @@ void InorderTraversal(Tree T);
 //后续遍历
 void PostorderTraversal(Tree T);
 
+//非递归先序遍历
+void PreorderNonRecursion(Tree T);
+
 //层序遍历
 void LevelTraversal(Tree T);
 
 //求二叉树深度
 int Depth(Tree T);
+
+//获取叶子结点个数
+int GetLeafNodeNum(Tree T);
+
+//销毁树
+void DisposeBinaryTree(Tree T);
 
 #endif      /* _BinaryTree_H */
