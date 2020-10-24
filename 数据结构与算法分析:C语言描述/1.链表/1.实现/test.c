@@ -7,7 +7,7 @@
 int main()
 {
     List L = NULL;
-    L = MakeEmpty(L);
+    L = MakeEmpty(L);        //这边L要重新指向新的头结点 
 
     Insert(1, L, L);
     Insert(2, L, L);

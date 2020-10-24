@@ -4,17 +4,21 @@
 #include <stdio.h>
 #include <string.h>
 #include "../1.实现/linkedStack.h"
-#include "balanceSymbol.h"
 
 const char open_char[] = "([{";
 const char close_char[] = ")]}";
 
-void CheckBalanceSymbol(FILE *fp)
+int IsOpenSymbol(char ch);
+int IsCloseSymbol(char ch);
+int IsMatch(char chOpen, char chClose);
+
+int main()
 {
+    Stack S = CreateStack();
+    FILE *fp = fopen("balanceSymbol.txt", "r");
     if(fp == NULL)
         FatalError("Not a corrent path");
-
-    Stack S = CreateStack();
+    
     char ch;
     while((ch = fgetc(fp)) != EOF)
     {
@@ -43,6 +47,7 @@ void CheckBalanceSymbol(FILE *fp)
     printf("输入无误\n");
     fclose(fp);
     DisposeStack(S);
+    return 0;
 }
 
 int IsOpenSymbol(char ch)
