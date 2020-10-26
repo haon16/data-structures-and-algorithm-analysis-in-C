@@ -12,7 +12,7 @@ const char close_char[] = ")]}";
 void CheckBalanceSymbol(FILE *fp)
 {
     if(fp == NULL)
-        FatalError("Not a corrent path");
+        FatalError("fp == NULL");
 
     Stack S = CreateStack();
     char ch;

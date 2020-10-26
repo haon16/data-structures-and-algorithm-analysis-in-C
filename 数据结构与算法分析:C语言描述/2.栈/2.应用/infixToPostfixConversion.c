@@ -13,28 +13,35 @@ void InfixToPostfixConversion()
     printf("请输入表达式：");
     char ch;
     int flag = 0;
+    char buf[50];               //buf相关操作把转换后的表达式写入到指定文件中
+    int cnt = 0;
     while((ch = getchar())!= '\n')
     {
-        while(ch >= '1' && ch <= '9')
+        while(ch >= '0' && ch <= '9')
         {
             flag = 1;
             printf("%c", ch);
+            buf[cnt++] = ch;
             ch = getchar();
         }
         
-        if(ch == '\n')
-            break;
         if(flag == 1)
         {
             printf(" ");
-            flag == 0;
+            buf[cnt++] = ' ';
+            flag = 0;
         }
+
+        if(ch == '\n')
+            break;
         
         if(ch == '+' || ch == '-')
         {
             while(!IsEmpty(S) && Top(S) != '(')
             {
                 printf("%c ", Top(S));
+                buf[cnt++] = Top(S);
+                buf[cnt++] = ' ';
                 Pop(S);
             }
             Push(ch, S);
@@ -44,6 +51,8 @@ void InfixToPostfixConversion()
             while(!IsEmpty(S) && Top(S) != '(' && Top(S) != '+' && Top(S) != '-')
             {
                 printf("%c ", Top(S));
+                buf[cnt++] = Top(S);
+                buf[cnt++] = ' ';
                 Pop(S);
             }
             Push(ch, S);
@@ -57,6 +66,8 @@ void InfixToPostfixConversion()
             while(!IsEmpty(S) && Top(S) != '(')
             {
                 printf("%c ", Top(S));
+                buf[cnt++] = Top(S);
+                buf[cnt++] = ' ';
                 Pop(S);
             }
             if(Top(S) == '(')
@@ -66,7 +77,13 @@ void InfixToPostfixConversion()
     while(!IsEmpty(S))
     {
         printf("%c ", Top(S));
+        buf[cnt++] = Top(S);
+        buf[cnt++] = ' ';
         Pop(S);
     }
     printf("\n");
+    buf[cnt++] = '\n';
+    FILE* fp = fopen("postfixExpression.txt", "w");
+    fwrite(buf, 1, cnt, fp);
+    fclose(fp);
 }
