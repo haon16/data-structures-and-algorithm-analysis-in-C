@@ -17,10 +17,10 @@ int IsFull(Stack S);
 //创建栈
 Stack CreateStack(int MaxElements);
 
-//释放栈
+//销毁栈
 void DisposeStack(Stack S);
 
-//清空栈
+//构造空栈
 void MakeEmpty(Stack S);
 
 //进栈

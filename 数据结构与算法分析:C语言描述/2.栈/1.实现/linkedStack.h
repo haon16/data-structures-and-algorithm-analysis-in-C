@@ -12,13 +12,13 @@ typedef PtrToNode Stack;
 //测试栈是否为空
 int IsEmpty(Stack S);
 
-//创建一个空栈
+//创建栈
 Stack CreateStack();
 
-//释放栈资源
+//销毁栈
 void DisposeStack(Stack S);
 
-//清空栈
+//构造空栈
 void MakeEmpty(Stack S);
 
 //进栈
