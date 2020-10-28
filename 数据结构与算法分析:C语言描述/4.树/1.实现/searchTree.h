@@ -10,6 +10,7 @@ typedef struct TreeNode *Position;
 typedef struct TreeNode *SearchTree;
 
 //创建二叉查找树
+SearchTree CreateSearchTree();
 
 //创建一棵空树
 SearchTree MakeEmpty(SearchTree T);
