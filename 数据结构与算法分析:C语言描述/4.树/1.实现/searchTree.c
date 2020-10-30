@@ -11,15 +11,6 @@ struct TreeNode
     SearchTree Right;
 };
 
-SearchTree CreateSearchTree()
-{
-    SearchTree T = (SearchTree)malloc(sizeof(struct TreeNode));
-    if(T == NULL)
-        FatalError("Out of space!!!");
-    MakeEmpty(T);
-    return T;
-}
-
 SearchTree MakeEmpty(SearchTree T)
 {
     if(T != NULL)
@@ -80,7 +71,7 @@ SearchTree Insert(ElementType X, SearchTree T)
     else if(X > T->Element)
         T->Right = Insert(X, T->Right);
     else
-        printf("树中以存在该元素");
+        printf("元素%d插入失败，树中已存在该元素\n", X);
 
     return T;
 }
