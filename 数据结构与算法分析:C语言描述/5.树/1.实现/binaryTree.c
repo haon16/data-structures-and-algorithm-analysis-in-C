@@ -3,8 +3,8 @@
 
 #include <stdio.h>
 #include "binaryTree.h"
-//#include "../../2.栈/1.实现/linkedStack.h"
-#include "../../3.队列/1.实现/arrayQueue.h"       //因为栈与队列有着同名函数，这边得分开测试
+#include "../../3.栈/1.实现/linkedStack.h"
+//#include "../../4.队列/1.实现/arrayQueue.h"       //因为栈与队列有着同名函数，这边得分开测试
 
 struct TreeNode
 {
@@ -36,6 +36,7 @@ Tree CreatBinaryTree()
     return T;
 }
 
+/*
 Tree CreatBinaryTreeByLevel()
 {
     Tree T;
@@ -91,6 +92,7 @@ Tree CreatBinaryTreeByLevel()
     }
     return T;
 }
+*/
 
 void PreorderTraversal(Tree T)
 {
@@ -122,7 +124,6 @@ void PostorderTraversal(Tree T)
     printf("%c ", T->Element);
 }
 
-/*
 void PreorderNonRecursion(Tree T)
 {
     if (T == NULL)
@@ -138,15 +139,55 @@ void PreorderNonRecursion(Tree T)
             Push(node, S);
             node = node->Left;
         }
-        node = Top(S);
-        Pop(S);
-        node = node->Right;
+        if(!IsEmpty(S))
+        {
+            node = Top(S);
+            Pop(S);
+            //printf("%c ", node->Element);    //输出放这就是中序非递归
+            node = node->Right;
+        }
     }
     printf("\n");
     DisposeStack(S);
 }
-*/
 
+void PostorderNonRecursion(Tree T)
+{
+    if(T == NULL)
+        return;
+    
+    Stack S = CreateStack();
+    PtrToTreeNode node = T;
+    PtrToTreeNode prev = NULL;
+    while(!IsEmpty(S) || node != NULL)
+    {
+        while(node != NULL)
+        {
+            Push(node, S);
+            node = node->Left;
+        }
+        if(!IsEmpty(S))
+        {
+            node = Top(S);
+            Pop(S);
+            if (node->Right == NULL || node->Right == prev)
+            {
+                printf("%c ", node->Element);
+                prev = node;
+                node = NULL;
+            }
+            else
+            {
+                Push(node, S);
+                node = node->Right;
+            }
+        }
+    }
+    printf("\n");
+    DisposeStack(S);
+}
+
+/*
 void LevelTraversal(Tree T)
 {
     if(T == NULL)
@@ -168,7 +209,7 @@ void LevelTraversal(Tree T)
     printf("\n");
     DisposeQueue(Q);
 }
-
+*/
  
 int Depth(Tree T)
 {

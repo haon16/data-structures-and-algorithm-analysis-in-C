@@ -26,6 +26,9 @@ void PostorderTraversal(Tree T);
 //非递归先序遍历
 void PreorderNonRecursion(Tree T);
 
+//非递归后序遍历
+void  PostorderNonRecursion(Tree T);
+
 //层序遍历
 void LevelTraversal(Tree T);
 

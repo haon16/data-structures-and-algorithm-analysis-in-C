@@ -65,7 +65,7 @@ SearchTree Insert(ElementType X, SearchTree T)
             T->Element = X;
             T->Left = T->Right = NULL;
         }
-    }
+    } 
     else if(X < T->Element)
         T->Left = Insert(X, T->Left);
     else if(X > T->Element)
