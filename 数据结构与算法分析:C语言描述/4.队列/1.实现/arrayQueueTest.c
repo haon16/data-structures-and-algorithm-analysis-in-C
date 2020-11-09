@@ -1,6 +1,7 @@
 //2020年10月26日 21:14:14
 //测试数组实现的队列
 
+#include <stdio.h>
 #include "arrayQueue.h"
 
 int main()

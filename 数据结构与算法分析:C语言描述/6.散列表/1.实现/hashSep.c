@@ -2,6 +2,7 @@
 //分离链接散列表的实现
 
 #include <stdio.h>
+#include <stdlib.h>
 #include "hashSep.h"
 
 #define MinTableSize 10

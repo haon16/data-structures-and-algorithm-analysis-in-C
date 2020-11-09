@@ -2,6 +2,7 @@
 //栈的数组实现
 
 #include <stdio.h>
+#include <stdlib.h>
 #include "arrayStack.h"
 
 #define EmptyTOS -1

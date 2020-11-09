@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include "postfixExpression.h"
 #include "infixToPostfixConversion.h"
+#include "../../base.h"
 
 int main()
 {

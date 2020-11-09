@@ -2,6 +2,7 @@
 //测试AVL树（同二叉查找树）
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <time.h>
 #include "AVLTree.h"
 

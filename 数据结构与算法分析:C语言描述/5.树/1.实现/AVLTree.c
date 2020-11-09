@@ -2,6 +2,7 @@
 //AVL树的实现（带有平衡条件的二叉查找树）
 
 #include <stdio.h>
+#include <stdlib.h>
 #include "AVLTree.h"
 
 struct AvlNode

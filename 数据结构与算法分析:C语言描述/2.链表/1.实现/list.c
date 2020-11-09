@@ -2,6 +2,7 @@
 //链表实现
 
 #include <stdio.h>
+#include <stdlib.h>
 #include "list.h"
 
 struct Node

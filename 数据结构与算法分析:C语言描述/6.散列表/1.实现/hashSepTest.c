@@ -14,11 +14,15 @@ int main()
     Insert(7, H);
     Insert(9, H);
     Insert(9, H);
+    Insert(12, H);
+    Insert(14, H);
     PrintHashTable(H);
 
     Delete(3, H);
-    Delete(5, H);
-    Delete(4, H);
+    Delete(12, H);
+    PrintHashTable(H);
+
+    Insert(3, H);
     PrintHashTable(H);
 
     DestroyTable(H);

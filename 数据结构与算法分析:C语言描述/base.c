@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "base.h"
 
 void FatalError(const char *msg)

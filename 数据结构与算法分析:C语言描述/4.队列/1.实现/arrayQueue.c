@@ -2,6 +2,7 @@
 //队列的数组实现
 
 #include <stdio.h>
+#include <stdlib.h>
 #include "arrayQueue.h"
 
 #define MinQueueSize 5

@@ -2,6 +2,7 @@
 //二叉查找树的实现
 
 #include <stdio.h>
+#include <stdlib.h>
 #include "searchTree.h"
 
 struct TreeNode

@@ -1,6 +1,7 @@
 //2020年10月26日 15:05:24
 //栈的应用：后缀表达式
 
+#include <stdlib.h>
 #include "postfixExpression.h"
 #include "../1.实现/linkedStack.h"
 

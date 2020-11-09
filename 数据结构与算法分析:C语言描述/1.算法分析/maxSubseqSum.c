@@ -2,6 +2,7 @@
 //最大子列和问题
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <time.h>
 
 #define MAXN 100

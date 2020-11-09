@@ -3,6 +3,7 @@
 
 #include <stdio.h>
 #include "balanceSymbol.h"
+#include "../../base.h"
 
 int main()
 {

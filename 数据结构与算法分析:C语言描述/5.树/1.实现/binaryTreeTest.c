@@ -1,6 +1,7 @@
 //2020年10月27日 15:18:25
 //测试二叉树
 
+#include <stdio.h>
 #include "binaryTree.h"
 
 int main()
