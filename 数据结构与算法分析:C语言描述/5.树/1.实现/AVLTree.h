@@ -33,19 +33,4 @@ ElementType Retrieve(Position P);
 //中序遍历(按顺序从小到大输出)
 void InorderTraversal(AvlTree T);
 
-//计算AVL结点的高度
-int Height(Position P);
-
-//左左单旋转
-Position SingleRotateWithLeft(Position K2);
-
-//左右双旋转
-Position DoubleRotateWithLeft(Position K3);
-
-//右右单旋转
-Position SingleRotateWithRight(Position K2);
-
-//右左双旋转
-Position DoubleRotateWithRight(Position K3);
-
 #endif       /* _AVLTree_H */

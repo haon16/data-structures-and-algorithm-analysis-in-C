@@ -23,9 +23,6 @@ void DisposeQueue(Queue Q);
 //构造空队列
 void MakeEmpty(Queue Q);
 
-//尾端处理
-static int Succ(int Value, Queue Q);
-
 //入队
 void Enqueue(ElementType X, Queue Q);
 

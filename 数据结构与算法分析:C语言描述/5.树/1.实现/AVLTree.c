@@ -13,12 +13,54 @@ struct AvlNode
     int Height;
 };
 
-int Height(Position P)
+static int Height(Position P)
 {
     if(P == NULL)
         return -1;
     else
         return P->Height;
+}
+
+//左左单旋转
+static Position SingleRotateWithLeft(Position K2)      
+{
+    Position K1 = K2->Left;
+    K2->Left = K1->Right;
+    K1->Right = K2;
+
+    K2->Height = Max(Height(K2->Left), Height(K2->Right)) + 1;
+    K1->Height = Max(Height(K1->Left), Height(K1->Right)) + 1;
+
+    return K1;
+}
+
+//右右单旋转
+static Position SingleRotateWithRight(Position K2)     
+{
+    Position K1 = K2->Right;
+    K2->Right = K1->Left;
+    K1->Left = K2;
+
+    K2->Height = Max(Height(K2->Left), Height(K2->Right)) + 1;
+    K1->Height = Max(Height(K1->Left), Height(K1->Right)) + 1;
+
+    return K1;
+}
+
+//左右双旋转
+static Position DoubleRotateWithLeft(Position K3)
+{
+    K3->Left = SingleRotateWithRight(K3->Left);     //先右右单旋转，再左左单旋转
+
+    return SingleRotateWithLeft(K3);
+}
+
+//右左双旋转
+static Position DoubleRotateWithRight(Position K3)
+{
+    K3->Right = SingleRotateWithLeft(K3->Right);    //先左左单旋转，再右右单旋转
+
+    return SingleRotateWithRight(K3);
 }
 
 AvlTree MakeEmpty(AvlTree T)
@@ -146,42 +188,4 @@ void InorderTraversal(AvlTree T)
     InorderTraversal(T->Left);
     printf("%d ", T->Element);
     InorderTraversal(T->Right);
-}
-
-Position SingleRotateWithLeft(Position K2)      
-{
-    Position K1 = K2->Left;
-    K2->Left = K1->Right;
-    K1->Right = K2;
-
-    K2->Height = Max(Height(K2->Left), Height(K2->Right)) + 1;
-    K1->Height = Max(Height(K1->Left), Height(K1->Right)) + 1;
-
-    return K1;
-}
-
-Position DoubleRotateWithLeft(Position K3)
-{
-    K3->Left = SingleRotateWithRight(K3->Left);     //先右右单旋转，再左左单旋转
-
-    return SingleRotateWithLeft(K3);
-}
-
-Position SingleRotateWithRight(Position K2)     
-{
-    Position K1 = K2->Right;
-    K2->Right = K1->Left;
-    K1->Left = K2;
-
-    K2->Height = Max(Height(K2->Left), Height(K2->Right)) + 1;
-    K1->Height = Max(Height(K1->Left), Height(K1->Right)) + 1;
-
-    return K1;
-}
-
-Position DoubleRotateWithRight(Position K3)
-{
-    K3->Right = SingleRotateWithLeft(K3->Right);    //先左左单旋转，再右右单旋转
-
-    return SingleRotateWithRight(K3);
 }

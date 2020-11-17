@@ -60,6 +60,7 @@ void MakeEmpty(Queue Q)
     Q->Rear = 0;
 }
 
+//尾端处理
 static int Succ(int Value, Queue Q)
 {
     if(++Value == Q->Capacity)
