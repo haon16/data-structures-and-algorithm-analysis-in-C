@@ -1,4 +1,5 @@
 #ifndef _Base_H
+#define _Base_H
 
 typedef int ElementType;
 void FatalError(const char *msg);

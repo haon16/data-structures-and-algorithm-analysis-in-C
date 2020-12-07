@@ -2,6 +2,7 @@
 //优先队列的实现
 
 #ifndef _BinHeap_H
+#define _BinHeap_H
 
 #include "../../base.h"
 

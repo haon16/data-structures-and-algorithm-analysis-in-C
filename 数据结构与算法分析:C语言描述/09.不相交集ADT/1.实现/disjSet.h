@@ -2,6 +2,7 @@
 //不相交集合实现
 
 #ifndef _DisjSet_H
+#define _DisjSet_H
 
 #include "../../base.h"
 

@@ -2,6 +2,7 @@
 //左式堆的实现
 
 #ifndef _LeftHeap_H
+#define _LeftHeap_H
 
 #include "../../base.h"
 

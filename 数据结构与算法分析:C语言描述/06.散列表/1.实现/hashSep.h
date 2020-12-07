@@ -2,6 +2,7 @@
 //分离链接散列表的实现
 
 #ifndef _HashSep_H
+#define _HashSep_H
 
 #include "../../base.h"
 

@@ -2,6 +2,7 @@
 //栈的链表实现
 
 #ifndef _LinkedStack_H
+#define _LinkedStack_H
 
 #include "../../base.h"
 

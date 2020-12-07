@@ -2,6 +2,7 @@
 //二叉树的实现
 
 #ifndef _BinaryTree_H
+#define _BinaryTree_H
 
 #include "../../base.h"
 

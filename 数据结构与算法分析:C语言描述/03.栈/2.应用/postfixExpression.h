@@ -2,6 +2,7 @@
 //栈的应用：后缀表达式
 
 #ifndef _PostfixExpression_H
+#define _PostfixExpression_H
 
 #include <stdio.h>
 

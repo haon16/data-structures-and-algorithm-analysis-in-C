@@ -2,6 +2,7 @@
 //开放定址散列表的实现
 
 #ifndef _HashQuad_H
+#define _HashQuad_H
 
 #include "../../base.h"
 

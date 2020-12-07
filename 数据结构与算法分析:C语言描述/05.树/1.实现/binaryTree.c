@@ -4,8 +4,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "binaryTree.h"
-#include "../../3.栈/1.实现/linkedStack.h"
-//#include "../../4.队列/1.实现/arrayQueue.h"       //因为栈与队列有着同名函数，这边得分开测试
+#include "../../03.栈/1.实现/linkedStack.h"
+//#include "../../04.队列/1.实现/arrayQueue.h"       //因为栈与队列有着同名函数，这边得分开测试
 
 struct TreeNode
 {

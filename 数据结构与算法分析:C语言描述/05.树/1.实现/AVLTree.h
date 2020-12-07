@@ -2,6 +2,7 @@
 //AVL树的实现（带有平衡条件的二叉查找树）
 
 #ifndef _AVLTree_H
+#define _AVLTree_H
 
 #include "../../base.h"
 

@@ -2,6 +2,7 @@
 //二项队列的实现
 
 #ifndef _BinQueue_H
+#define _BinQueue_H
 
 #include "../../base.h"
 

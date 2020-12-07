@@ -2,6 +2,7 @@
 //栈的应用：平衡符号
 
 #ifndef _BalanceSymbol_H
+#define _BalanceSymbol_H
 
 #include <stdio.h>
 

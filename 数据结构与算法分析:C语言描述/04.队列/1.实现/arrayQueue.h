@@ -2,6 +2,7 @@
 //队列的数组实现
 
 #ifndef _ArrayQueue_H
+#define _ArrayQueue_H
 
 #include "../../base.h"
 

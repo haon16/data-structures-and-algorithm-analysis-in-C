@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "leftHeap.h"
-#include "../../4.队列/1.实现/arrayQueue.h"
+#include "../../04.队列/1.实现/arrayQueue.h"
 
 struct TreeNode
 {

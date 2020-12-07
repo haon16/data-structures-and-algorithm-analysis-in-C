@@ -2,6 +2,7 @@
 //链表实现
 
 #ifndef _List_H
+#define _List_H
 
 #include "../../base.h"
 

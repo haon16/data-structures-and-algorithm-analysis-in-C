@@ -2,6 +2,7 @@
 //二叉查找树的实现
 
 #ifndef _SearchTree_H
+#define _SearchTree_H
 
 #include "../../base.h"
 

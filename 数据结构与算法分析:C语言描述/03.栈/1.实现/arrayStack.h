@@ -2,6 +2,7 @@
 //栈的数组实现
 
 #ifndef _ArrayStack_H
+#define _ArrayStack_H
 
 #include "../../base.h"
 

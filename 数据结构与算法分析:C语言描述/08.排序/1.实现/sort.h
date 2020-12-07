@@ -2,6 +2,7 @@
 //排序实现
 
 #ifndef _Sort_H
+#define _Sort_H
 
 #include "../../base.h"
 
