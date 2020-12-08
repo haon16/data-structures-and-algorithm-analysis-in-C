@@ -21,11 +21,11 @@ char ReadChar()
     return ch;
 }
 
-int GetPosition(Graph *pG, char ch)
+int GetPosition(Graph G, char ch)
 {
-    for(int i = 0; i < pG->VexNum; i++)
+    for(int i = 0; i < G->VexNum; i++)
     {
-        if(pG->Vexs[i].Data == ch)
+        if(G->Vexs[i].Data == ch)
             return i;
     }
     return -1;
@@ -39,7 +39,7 @@ void static LinkLast(ENode *List, ENode *Node)
     p->NextEdge = Node;
 }
 
-Graph *CreateGraph()
+Graph CreateGraph()
 {
     int VexNum, EdgeNum;
     printf("Input vertex number: ");
@@ -49,59 +49,59 @@ Graph *CreateGraph()
     if(VexNum < 1 || EdgeNum < 1 || EdgeNum > VexNum*(VexNum-1))
         FatalError("Input error!!!");
 
-    Graph *pG = (Graph *)malloc(sizeof(Graph));
-    if(pG == NULL)
+    Graph G = (Graph)malloc(sizeof(struct GraphRecord));
+    if(G == NULL)
         FatalError("Out of space!!!");
 
-    memset(pG, 0, sizeof(Graph));
-    pG->VexNum = VexNum;
-    pG->EdgeNum = EdgeNum;
+    memset(G, 0, sizeof(Graph));
+    G->VexNum = VexNum;
+    G->EdgeNum = EdgeNum;
 
     //初始化邻接表的顶点
-    for(int i = 0; i < pG->VexNum; i++)
+    for(int i = 0; i < G->VexNum; i++)
     {
         printf("vertex[%d]: ", i);
-        pG->Vexs[i].Data = ReadChar();
-        pG->Vexs[i].FirstEdge = NULL;
+        G->Vexs[i].Data = ReadChar();
+        G->Vexs[i].FirstEdge = NULL;
     }
 
     //初始化邻接表的边
     char ch1, ch2;
     int pos1, pos2;
     ENode *Node;
-    for(int i = 0; i < pG->EdgeNum; i++)
+    for(int i = 0; i < G->EdgeNum; i++)
     {
         //读取边的起始顶点和结束顶点
         printf("edge[%d]: ", i);
         ch1 = ReadChar();
         ch2 = ReadChar();
 
-        pos1 = GetPosition(pG, ch1);
-        pos2 = GetPosition(pG, ch2);
+        pos1 = GetPosition(G, ch1);
+        pos2 = GetPosition(G, ch2);
 
         //创建结点并链接
         Node = (ENode *)malloc(sizeof(ENode));
         Node->Vex = pos2;
-        if(pG->Vexs[pos1].FirstEdge == NULL)
-            pG->Vexs[pos1].FirstEdge = Node;
+        if(G->Vexs[pos1].FirstEdge == NULL)
+            G->Vexs[pos1].FirstEdge = Node;
         else
-            LinkLast(pG->Vexs[pos1].FirstEdge, Node);
+            LinkLast(G->Vexs[pos1].FirstEdge, Node);
     }
 
-    return pG;
+    return G;
 }
 
-void PrintGraph(Graph *pG)
+void PrintGraph(Graph G)
 {
     ENode *Node;
     printf("List Graph:\n");
-    for(int i = 0; i < pG->VexNum; i++)
+    for(int i = 0; i < G->VexNum; i++)
     {
-        printf("[%d%c]", i, pG->Vexs[i].Data);
-        Node = pG->Vexs[i].FirstEdge;
+        printf("[%d%c]", i, G->Vexs[i].Data);
+        Node = G->Vexs[i].FirstEdge;
         while(Node != NULL)
         {
-            printf(" -> [%d%c]", Node->Vex, pG->Vexs[Node->Vex].Data);
+            printf(" -> [%d%c]", Node->Vex, G->Vexs[Node->Vex].Data);
             Node = Node->NextEdge;
         }
         printf("\n");

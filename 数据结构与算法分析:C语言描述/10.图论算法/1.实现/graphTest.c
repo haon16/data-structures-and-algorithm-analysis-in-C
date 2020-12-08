@@ -5,8 +5,8 @@
 
 int main()
 {
-    Graph *pG = CreateGraph();
-    PrintGraph(pG);
+    Graph G = CreateGraph();
+    PrintGraph(G);
 
     return 0;
 }

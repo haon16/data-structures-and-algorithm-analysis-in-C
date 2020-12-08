@@ -21,23 +21,23 @@ typedef struct VNode
 }VNode;
 
 //邻接表
-typedef struct Graph
+typedef struct GraphRecord
 {
     int VexNum;         //图的顶点的数目
     int EdgeNum;        //图的边的数目
     VNode Vexs[MAX];
-}Graph;
+}*Graph;
 
 //读取一个输入字符
 char ReadChar();
 
 //根据顶点值获取位置索引
-int GetPosition(Graph *pG, char ch);
+int GetPosition(Graph G, char ch);
 
 //创建邻接表
-Graph *CreateGraph();
+Graph CreateGraph();
 
 //打印邻接表图
-void PrintGraph(Graph *pG);
+void PrintGraph(Graph G);
 
 #endif      /* _Graph_H */
