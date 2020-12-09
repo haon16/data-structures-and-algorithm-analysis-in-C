@@ -46,7 +46,7 @@ Graph CreateGraph()
     scanf("%d", &VexNum);
     printf("input edge number: ");
     scanf("%d", &EdgeNum);
-    if(VexNum < 1 || EdgeNum < 1 || EdgeNum > VexNum*(VexNum-1))
+    if(VexNum < 1 || VexNum > MAX || EdgeNum < 1 || EdgeNum > VexNum*(VexNum-1))
         FatalError("Input error!!!");
 
     Graph G = (Graph)malloc(sizeof(struct GraphRecord));
