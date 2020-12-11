@@ -4,7 +4,7 @@
 #ifndef _Graph_H
 #define _Graph_H
 
-#define MAX 20
+#define MAXVERTEX 20
 
 //邻接表中表对应的链表的顶点
 typedef struct ENode
@@ -25,7 +25,7 @@ typedef struct GraphRecord
 {
     int VexNum;         //图的顶点的数目
     int EdgeNum;        //图的边的数目
-    VNode Vexs[MAX];
+    VNode Vexs[MAXVERTEX];
 }*Graph;
 
 //读取一个输入字符

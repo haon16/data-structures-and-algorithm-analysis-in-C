@@ -12,33 +12,24 @@
 #define INFINITY 65535
 #define NOTEXIST -1
 
-typedef struct InfoRecord
+struct TableEntry
 {
     int Known;  //该顶点是否被遍历
     int Dist;   //当前顶点与开始顶点的距离
     int Path;   //与当前结点连接构成边的顶点
-}*Info;
-
-struct TableRecord
-{
-    Info Array[MAX];
 };
 
 Table CreatTable(int VertexNum)
 {
-    Table T = (Table)malloc(sizeof(struct TableRecord));
+    Table T = (Table)malloc(sizeof(struct TableEntry) * MAXVERTEX);
     if(T == NULL)
         FatalError("Out of space!!!");
 
     for(int i = 0; i < VertexNum; i++)
     {
-        T->Array[i] = (Info)malloc(sizeof(struct InfoRecord));
-        if(T->Array[i] == NULL)
-            FatalError("Out of space!!!");
-
-        T->Array[i]->Known = FALSE;
-        T->Array[i]->Dist = INFINITY;
-        T->Array[i]->Path = NOTEXIST;
+        T[i]->Known = FALSE;
+        T[i]->Dist = INFINITY;
+        T[i]->Path = NOTEXIST;
     }
     return T;
 }
@@ -46,7 +37,7 @@ Table CreatTable(int VertexNum)
 void UnweightShortestPath(Graph G, Table T, char cBegin)
 {
     int Pos = GetPosition(G, cBegin);
-    T->Array[Pos]->Dist = 0;
+    T[Pos]->Dist = 0;
 
     Queue Q = CreateQueue(G->VexNum);
     Enqueue(Pos, Q);
@@ -55,15 +46,15 @@ void UnweightShortestPath(Graph G, Table T, char cBegin)
     while(!IsEmpty(Q))
     {
         int Index = FrontAndDequeue(Q);
-        T->Array[Index]->Known = TRUE;
+        T[Index]->Known = TRUE;
 
         Node = G->Vexs[Index].FirstEdge;
         while(Node != NULL)
         {
-            if(T->Array[Node->Vex]->Dist == INFINITY)
+            if(T[Node->Vex]->Dist == INFINITY)
             {
-                T->Array[Node->Vex]->Dist = T->Array[Index]->Dist + 1;
-                T->Array[Node->Vex]->Path = Index;
+                T[Node->Vex]->Dist = T[Index]->Dist + 1;
+                T[Node->Vex]->Path = Index;
                 Enqueue(Node->Vex, Q);
             }
             Node = Node->NextEdge;
@@ -77,15 +68,15 @@ void PrintTable(Graph G, Table T)
 {
     for(int i = 0; i < G->VexNum; i++)
     {
-        printf("[%d%c] Known = %d, Dist = %d, Path =  %d\n", i, G->Vexs[i].Data, T->Array[i]->Known, T->Array[i]->Dist, T->Array[i]->Path);
+        printf("[%d%c] Known = %d, Dist = %d, Path =  %d\n", i, G->Vexs[i].Data, T[i]->Known, T[i]->Dist, T[i]->Path);
     }
 }
 
 static void Print(Graph G, Table T, int Pos)
 {
-    if(T->Array[Pos]->Path != NOTEXIST)
+    if(T[Pos]->Path != NOTEXIST)
     {
-        Print(G, T, T->Array[Pos]->Path);
+        Print(G, T, T[Pos]->Path);
         printf(" -> ");
     }
     printf("%c", G->Vexs[Pos].Data);
@@ -95,7 +86,7 @@ void PrintPath(Graph G, Table T, char cEnd)
 {
     int Pos = GetPosition(G, cEnd);
 
-    if(T->Array[Pos]->Path == NOTEXIST)
+    if(T[Pos]->Path == NOTEXIST)
     {    
         printf("不存在该路径\n");
         return;

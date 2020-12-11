@@ -6,8 +6,8 @@
 
 #include "../1.实现/graph.h"
 
-struct TableRecord;
-typedef struct TableRecord *Table;
+struct TableEntry;
+typedef struct TableEntry (*Table)[MAXVERTEX];
 
 //创建并初始化Table
 Table CreatTable(int VertexNum);
