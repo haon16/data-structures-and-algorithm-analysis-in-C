@@ -7,11 +7,14 @@
 #define MAXVERTEX 20
 #define NOTIXIST -1
 
+int g_includeWeight;
+
 //邻接表中表对应的链表的顶点
 typedef struct ENode
 {
-    int Vex;            //该边所指向的顶点的位置
-    struct ENode *NextEdge;    //指向下一条弧的指针
+    int Vex;                //该边所指向的顶点的位置
+    int Weight;             //权重，视情况选择
+    struct ENode *NextEdge; //指向下一条弧的指针
 }ENode;
 
 //邻接表中表的顶点

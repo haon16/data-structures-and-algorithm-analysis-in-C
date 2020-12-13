@@ -41,6 +41,10 @@ void static LinkLast(ENode *List, ENode *Node)
 
 Graph CreateGraph()
 {
+    printf("Choose weight graph or unweight graph(w/u): ");
+    char ch = getchar();
+    g_includeWeight = ((ch == 'w' || ch == 'W') ? 1 : 0);
+
     int VexNum, EdgeNum;
     printf("Input vertex number: ");
     scanf("%d", &VexNum);
@@ -69,6 +73,7 @@ Graph CreateGraph()
     char ch1, ch2;
     int pos1, pos2;
     ENode *Node;
+    int weight = 0;
     for(int i = 0; i < G->EdgeNum; i++)
     {
         //读取边的起始顶点和结束顶点
@@ -76,12 +81,20 @@ Graph CreateGraph()
         ch1 = ReadChar();
         ch2 = ReadChar();
 
+        //权重处理
+        if(g_includeWeight == 1)
+        {
+            printf("weight:");
+            scanf("%d", &weight);
+        }
+
         pos1 = GetPosition(G, ch1);
         pos2 = GetPosition(G, ch2);
 
         //创建结点并链接
         Node = (ENode *)malloc(sizeof(ENode));
         Node->Vex = pos2;
+        Node->Weight = weight;
         Node->NextEdge = NULL;
         if(G->Vexs[pos1].FirstEdge == NULL)
             G->Vexs[pos1].FirstEdge = Node;
@@ -103,6 +116,10 @@ void PrintGraph(Graph G)
         while(Node != NULL)
         {
             printf(" -> [%d%c]", Node->Vex, G->Vexs[Node->Vex].Data);
+            if(g_includeWeight == 1)
+            {
+                printf("(%d)", Node->Weight);
+            }
             Node = Node->NextEdge;
         }
         printf("\n");
