@@ -28,7 +28,7 @@ int GetPosition(Graph G, char ch)
         if(G->Vexs[i].Data == ch)
             return i;
     }
-    return -1;
+    return NOTIXIST;
 }
 
 void static LinkLast(ENode *List, ENode *Node)
@@ -53,7 +53,7 @@ Graph CreateGraph()
     if(G == NULL)
         FatalError("Out of space!!!");
 
-    memset(G, 0, sizeof(Graph));
+    memset(G, 0, sizeof(struct GraphRecord));
     G->VexNum = VexNum;
     G->EdgeNum = EdgeNum;
 
@@ -82,6 +82,7 @@ Graph CreateGraph()
         //创建结点并链接
         Node = (ENode *)malloc(sizeof(ENode));
         Node->Vex = pos2;
+        Node->NextEdge = NULL;
         if(G->Vexs[pos1].FirstEdge == NULL)
             G->Vexs[pos1].FirstEdge = Node;
         else

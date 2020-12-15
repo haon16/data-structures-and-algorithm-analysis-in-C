@@ -9,14 +9,24 @@ int main()
     Graph G = CreateGraph();
     PrintGraph(G);
 
-    printf("input start point and end point: ");
-    char ch1 = ReadChar();
-    char ch2 = ReadChar();
-
     Table T = CreatTable(G->VexNum);
-    UnweightShortestPath(G, T, ch1);
-    
-    PrintTable(G, T);
-    PrintPath(G, T, ch2);
+    char ch;
+    do
+    {
+        printf("input start point and end point: ");
+        char ch1 = ReadChar();
+        char ch2 = ReadChar();
+
+        UnweightShortestPath(G, T, ch1);
+        PrintTable(G, T);
+        PrintPath(G, T, ch2);
+
+        MakeTableEmpty(T, G->VexNum);
+        getchar();
+        printf("Continue input?(Y/N) : ");
+        ch = getchar();
+
+    }while(ch == 'Y' || ch == 'y');
+
     return 0;
 }

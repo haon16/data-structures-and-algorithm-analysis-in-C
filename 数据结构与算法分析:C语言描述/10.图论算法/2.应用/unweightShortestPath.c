@@ -10,7 +10,7 @@
 #define TRUE 1
 #define FALSE 0
 #define INFINITY 65535
-#define NOTEXIST -1
+#define NOTAVERTEX -1
 
 struct TableEntry
 {
@@ -25,11 +25,12 @@ Table CreatTable(int VertexNum)
     if(T == NULL)
         FatalError("Out of space!!!");
 
+
     for(int i = 0; i < VertexNum; i++)
     {
-        T[i]->Known = FALSE;
-        T[i]->Dist = INFINITY;
-        T[i]->Path = NOTEXIST;
+        T[i].Known = FALSE;
+        T[i].Dist = INFINITY;
+        T[i].Path = NOTAVERTEX;
     }
     return T;
 }
@@ -37,7 +38,10 @@ Table CreatTable(int VertexNum)
 void UnweightShortestPath(Graph G, Table T, char cBegin)
 {
     int Pos = GetPosition(G, cBegin);
-    T[Pos]->Dist = 0;
+    if(Pos == NOTIXIST)
+        Error("Invalid input");
+
+    T[Pos].Dist = 0;
 
     Queue Q = CreateQueue(G->VexNum);
     Enqueue(Pos, Q);
@@ -46,15 +50,15 @@ void UnweightShortestPath(Graph G, Table T, char cBegin)
     while(!IsEmpty(Q))
     {
         int Index = FrontAndDequeue(Q);
-        T[Index]->Known = TRUE;
+        T[Index].Known = TRUE;
 
         Node = G->Vexs[Index].FirstEdge;
         while(Node != NULL)
         {
-            if(T[Node->Vex]->Dist == INFINITY)
+            if(T[Node->Vex].Dist == INFINITY)
             {
-                T[Node->Vex]->Dist = T[Index]->Dist + 1;
-                T[Node->Vex]->Path = Index;
+                T[Node->Vex].Dist = T[Index].Dist + 1;
+                T[Node->Vex].Path = Index;
                 Enqueue(Node->Vex, Q);
             }
             Node = Node->NextEdge;
@@ -68,15 +72,15 @@ void PrintTable(Graph G, Table T)
 {
     for(int i = 0; i < G->VexNum; i++)
     {
-        printf("[%d%c] Known = %d, Dist = %d, Path =  %d\n", i, G->Vexs[i].Data, T[i]->Known, T[i]->Dist, T[i]->Path);
+        printf("[%d%c] Known = %d, Dist = %d, Path =  %d\n", i, G->Vexs[i].Data, T[i].Known, T[i].Dist, T[i].Path);
     }
 }
 
 static void Print(Graph G, Table T, int Pos)
 {
-    if(T[Pos]->Path != NOTEXIST)
+    if(T[Pos].Path != NOTAVERTEX)
     {
-        Print(G, T, T[Pos]->Path);
+        Print(G, T, T[Pos].Path);
         printf(" -> ");
     }
     printf("%c", G->Vexs[Pos].Data);
@@ -86,7 +90,7 @@ void PrintPath(Graph G, Table T, char cEnd)
 {
     int Pos = GetPosition(G, cEnd);
 
-    if(T[Pos]->Path == NOTEXIST)
+    if(T[Pos].Path == NOTAVERTEX)
     {    
         printf("不存在该路径\n");
         return;
@@ -95,4 +99,14 @@ void PrintPath(Graph G, Table T, char cEnd)
     printf("shortest path: ");
     Print(G, T, Pos);
     printf("\n");
+}
+
+void MakeTableEmpty(Table T, int VertexNum)
+{
+    for(int i = 0; i < VertexNum; i++)
+    {
+        T[i].Known = FALSE;
+        T[i].Dist = INFINITY;
+        T[i].Path = NOTAVERTEX;
+    }
 }

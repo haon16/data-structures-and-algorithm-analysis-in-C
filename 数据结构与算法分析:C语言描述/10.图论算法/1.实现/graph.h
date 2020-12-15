@@ -5,6 +5,7 @@
 #define _Graph_H
 
 #define MAXVERTEX 20
+#define NOTIXIST -1
 
 //邻接表中表对应的链表的顶点
 typedef struct ENode

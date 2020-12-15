@@ -7,7 +7,7 @@
 #include "../1.实现/graph.h"
 
 struct TableEntry;
-typedef struct TableEntry (*Table)[MAXVERTEX];
+typedef struct TableEntry *Table;
 
 //创建并初始化Table
 Table CreatTable(int VertexNum);
@@ -20,5 +20,8 @@ void PrintTable(Graph G, Table T);
 
 //打印路径
 void PrintPath(Graph G, Table T, char cEnd);
+
+//清空Table
+void MakeTableEmpty(Table T, int VertexNum);
 
 #endif      /* _UnweightShortestPath_H */
