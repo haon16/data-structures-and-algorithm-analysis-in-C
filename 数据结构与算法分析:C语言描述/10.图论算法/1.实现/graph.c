@@ -9,6 +9,8 @@
 
 #define IsLetter(ch) ((ch>='a' && ch<='z') || (ch>='A' && ch<='Z'))
 
+int g_includeWeight;
+
 char ReadChar()
 {
     char ch;
@@ -84,7 +86,7 @@ Graph CreateGraph()
         //权重处理
         if(g_includeWeight == 1)
         {
-            printf("weight:");
+            printf("weight: ");
             scanf("%d", &weight);
         }
 
@@ -93,6 +95,8 @@ Graph CreateGraph()
 
         //创建结点并链接
         Node = (ENode *)malloc(sizeof(ENode));
+        if(Node == NULL)
+            FatalError("Out of space!!!");
         Node->Vex = pos2;
         Node->Weight = weight;
         Node->NextEdge = NULL;

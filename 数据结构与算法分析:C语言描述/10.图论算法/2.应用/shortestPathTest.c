@@ -14,7 +14,7 @@ int main()
 
     Table T = CreatTable(G->VexNum);
 
-    printf("Input 1 for Testing UnweightShortestPath , 2 for testing Dijkstra: ");
+    printf("Choice : 1 for testing UnweightShortestPath , 2 for testing Dijkstra: ");
     int n;
     scanf("%d", &n);
     switch (n)
@@ -42,7 +42,7 @@ void TestUnweightShortestPath(Graph G, Table T)
         char ch2 = ReadChar();
 
         UnweightShortestPath(G, T, ch1);
-        PrintTable(G, T);
+        //PrintTable(G, T);
         PrintPath(G, T, ch2);
 
         MakeTableEmpty(T, G->VexNum);
@@ -56,7 +56,19 @@ void TestUnweightShortestPath(Graph G, Table T)
 void TestDijkstra(Graph G, Table T)
 {
     char ch;
-    printf("Input begin point: ");
-    ch = ReadChar();
-    Dijkstra(G, T, ch);
+    do
+    {
+        char ch1;
+        printf("Input begin point: ");
+        ch1 = ReadChar();
+        Dijkstra(G, T, ch1);
+        //PrintTable(G, T);
+        PrintWeightAndPath(G, T, ch1);
+
+        MakeTableEmpty(T, G->VexNum);
+        getchar();
+        printf("Continue input?(Y/N) : ");
+        ch = getchar();
+
+    }while(ch == 'Y' || ch == 'y');
 }

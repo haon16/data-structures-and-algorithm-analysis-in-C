@@ -21,11 +21,16 @@ void PrintPath(Graph G, Table T, char cEnd);
 //清空Table
 void MakeTableEmpty(Table T, int VertexNum);
 
+
 //无权最短路径
 void UnweightShortestPath(Graph G, Table T, char cBegin);
 
+
 //获取权重
 int GetWeight(Graph G, int Begin, int End);
+
+//打印权重及路径
+void PrintWeightAndPath(Graph G, Table T, char cBegin);
 
 //dijkstra算法
 void Dijkstra(Graph G, Table T, char cBegin);

@@ -14,9 +14,9 @@
 
 struct TableEntry
 {
-    int Known;  //该顶点是否被遍历
-    int Dist;   //当前顶点与开始顶点的距离
-    int Path;   //与当前结点连接构成边的顶点
+    int Known;      //该顶点是否被遍历
+    int Dist;       //当前顶点与开始顶点的距离
+    int Path;       //与当前结点连接构成边的顶点
 };
 
 Table CreatTable(int VertexNum)
@@ -98,7 +98,7 @@ void UnweightShortestPath(Graph G, Table T, char cBegin)
         Node = G->Vexs[Index].FirstEdge;
         while(Node != NULL)
         {
-            if(T[Node->Vex].Dist == INFINITY)   //更新该顶点所指向的未知顶点的信息
+            if(T[Node->Vex].Dist == INFINITY)       //更新该顶点所指向的未知顶点的信息
             {
                 T[Node->Vex].Dist = T[Index].Dist + 1;
                 T[Node->Vex].Path = Index;
@@ -121,10 +121,20 @@ int GetWeight(Graph G, int Begin, int End)
     {
         if(Node->Vex == End)
             return Node->Weight;
-        
         Node = Node->NextEdge;
     }
     return INFINITY;
+}
+
+void PrintWeightAndPath(Graph G, Table T, char cBegin)
+{
+    int Pos = GetPosition(G, cBegin);
+    for(int i = 0; i < G->VexNum; i++)
+    {
+        printf("shortest(%c, %c)=%d\n", G->Vexs[Pos].Data, G->Vexs[i].Data, T[i].Dist);
+        PrintPath(G , T, G->Vexs[i].Data);
+        printf("\n");
+    }
 }
 
 void Dijkstra(Graph G, Table T, char cBegin)
@@ -135,27 +145,37 @@ void Dijkstra(Graph G, Table T, char cBegin)
 
     for(int i = 0; i < G->VexNum; i++)
     {
-        T[i].Dist = GetWeight(G, Pos, i);       //起始点到各顶点的权重
+        T[i].Dist = GetWeight(G, Pos, i);           //起始点到各顶点的权重
+        if(i != Pos && T[i].Dist != INFINITY)       //对起始点所指向的顶点直接更新前驱顶点
+        {
+            T[i].Path = Pos;
+        }
     }
 
     T[Pos].Known = TRUE;
     T[Pos].Dist = 0;
     
-    int k, min, temp;
-    for(int i = 1; i < G->VexNum; i++)          //遍历G->VexNum-1次，每次找出一个顶点的最短路径
+    int k = -1, min, temp;
+    for(int i = 1; i < G->VexNum; i++)              //遍历G->VexNum-1次，每次找出一个顶点的最短路径
     {
         min = INFINITY;                         
-        for(int j = 0; j < G->VexNum; j++)      //在未获取最短路径的顶点中，找到离起始点最近的顶点
+        for(int j = 0; j < G->VexNum; j++)          //在未获取最短路径的顶点中，找到离起始点最近的顶点
         {
-            if(T[j].Known = FALSE && T[j].Dist < min)
+            if(T[j].Known == FALSE && T[j].Dist < min)
             {
                 min = T[j].Dist;
                 k = j;
             }
         }
-        T[k].Known = TRUE;                      //标记该顶点为已知，已获取到最短路径
+        if(k == -1)
+        {
+            printf("该顶点无通往其他顶点的路径\n");
+            return;
+        }
 
-        for(int j = 0; j < G->VexNum; j++)      //更新当前顶点所指向的未知的顶点的路径信息，更新前驱顶点
+        T[k].Known = TRUE;                          //标记该顶点为已知，已获取到最短路径
+
+        for(int j = 0; j < G->VexNum; j++)          //更新当前顶点所指向的未知的顶点的路径信息，更新前驱顶点
         {
             temp = GetWeight(G, k, j);
             temp = (temp == INFINITY ? INFINITY : min + temp);
@@ -165,11 +185,5 @@ void Dijkstra(Graph G, Table T, char cBegin)
                 T[j].Path = k;
             }
         }
-    }
-
-    for(int i = 0; i < G->VexNum; i++)
-    {
-        printf("shortest(%c, %c)=%d\n", G->Vexs[Pos].Data, G->Vexs[i].Data, T[i].Dist);
-        PrintPath(G , T, G->Vexs[i].Data);
     }
 }
