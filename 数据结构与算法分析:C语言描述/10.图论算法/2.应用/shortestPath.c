@@ -3,6 +3,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "shortestPath.h"
 #include "../../base.h"
 #include "../../04.队列/1.实现/arrayQueue.h"
@@ -155,7 +156,7 @@ void Dijkstra(Graph G, Table T, char cBegin)
     T[Pos].Known = TRUE;
     T[Pos].Dist = 0;
     
-    int k = -1, min, temp;
+    int k = NOTAVERTEX, min, temp;
     for(int i = 1; i < G->VexNum; i++)              //遍历G->VexNum-1次，每次找出一个顶点的最短路径
     {
         min = INFINITY;                         
@@ -167,7 +168,7 @@ void Dijkstra(Graph G, Table T, char cBegin)
                 k = j;
             }
         }
-        if(k == -1)
+        if(k == NOTAVERTEX)
         {
             printf("该顶点无通往其他顶点的路径\n");
             return;
@@ -177,13 +178,62 @@ void Dijkstra(Graph G, Table T, char cBegin)
 
         for(int j = 0; j < G->VexNum; j++)          //更新当前顶点所指向的未知的顶点的路径信息，更新前驱顶点
         {
-            temp = GetWeight(G, k, j);
-            temp = (temp == INFINITY ? INFINITY : min + temp);
-            if(T[j].Known == FALSE && temp < T[j].Dist)
+            if(T[j].Known == FALSE)
             {
-                T[j].Dist = temp;
-                T[j].Path = k;
+                temp = GetWeight(G, k, j);
+                temp = (temp == INFINITY ? INFINITY : min + temp);
+                if(temp < T[j].Dist)
+                {
+                    T[j].Dist = temp;
+                    T[j].Path = k;
+                }
             }
         }
     }
+}
+
+void WeightedNegative(Graph G, Table T, char cBegin)
+{
+    int Pos = GetPosition(G, cBegin);
+    if(Pos == NOTIXIST)
+        Error("Invalid input");
+
+    T[Pos].Dist = 0;
+    
+    Queue Q = CreateQueue(G->VexNum);
+    Enqueue(Pos, Q);
+
+    int *ExistInQueue = (int *)malloc(sizeof(int) * G->VexNum);     //创建一个数组，记录每个元素是否在队列中
+    memset(ExistInQueue, 0, sizeof(int) * G->VexNum);
+    ExistInQueue[Pos] = 1;
+
+    ENode *Node;
+    int temp;
+    while(!IsEmpty(Q))
+    {
+        int Index = FrontAndDequeue(Q);
+        ExistInQueue[Index] = 0;
+
+        Node = G->Vexs[Index].FirstEdge;
+        while(Node != NULL)
+        {
+            temp = GetWeight(G, Index, Node->Vex);
+            temp = (temp == INFINITY ? INFINITY : T[Index].Dist + temp);
+            if(temp < T[Node->Vex].Dist)
+            {
+                T[Node->Vex].Dist = temp;
+                T[Node->Vex].Path = Index;
+                if(ExistInQueue[Node->Vex] == 0)        //不在队列中时重新入队
+                {
+                    Enqueue(Node->Vex, Q);
+                    ExistInQueue[Node->Vex] = 1;
+                }
+            }
+
+            Node = Node->NextEdge;
+        }
+    }
+
+    DisposeQueue(Q);
+    free(ExistInQueue);
 }
