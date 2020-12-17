@@ -10,6 +10,7 @@
 #define IsLetter(ch) ((ch>='a' && ch<='z') || (ch>='A' && ch<='Z'))
 
 int g_includeWeight;
+int g_isUndirected;
 
 char ReadChar()
 {
@@ -46,6 +47,11 @@ Graph CreateGraph()
     printf("Choose weight graph or unweight graph(w/u): ");
     char ch = getchar();
     g_includeWeight = ((ch == 'w' || ch == 'W') ? 1 : 0);
+    getchar();
+    printf("Choose directed graph or undirected graph(d/u): ");
+    ch = getchar();
+    g_isUndirected = ((ch == 'u' || ch == 'U') ? 1 : 0);
+
 
     int VexNum, EdgeNum;
     printf("Input vertex number: ");
@@ -74,7 +80,7 @@ Graph CreateGraph()
     //初始化邻接表的边
     char ch1, ch2;
     int pos1, pos2;
-    ENode *Node;
+    ENode *Node1, *Node2;
     int weight = 0;
     for(int i = 0; i < G->EdgeNum; i++)
     {
@@ -94,16 +100,31 @@ Graph CreateGraph()
         pos2 = GetPosition(G, ch2);
 
         //创建结点并链接
-        Node = (ENode *)malloc(sizeof(ENode));
-        if(Node == NULL)
+        Node1 = (ENode *)malloc(sizeof(ENode));
+        if(Node1 == NULL)
             FatalError("Out of space!!!");
-        Node->Vex = pos2;
-        Node->Weight = weight;
-        Node->NextEdge = NULL;
+        Node1->Vex = pos2;
+        Node1->Weight = weight;
+        Node1->NextEdge = NULL;
         if(G->Vexs[pos1].FirstEdge == NULL)
-            G->Vexs[pos1].FirstEdge = Node;
+            G->Vexs[pos1].FirstEdge = Node1;
         else
-            LinkLast(G->Vexs[pos1].FirstEdge, Node);
+            LinkLast(G->Vexs[pos1].FirstEdge, Node1);
+        
+        //无向图处理
+        if(g_isUndirected == 1)
+        {
+            Node2 = (ENode *)malloc(sizeof(ENode));
+            if(Node2 == NULL)
+                FatalError("Out of space!!!");
+            Node2->Vex = pos1;
+            Node2->Weight = weight;
+            Node2->NextEdge = NULL;
+            if(G->Vexs[pos2].FirstEdge == NULL)
+                G->Vexs[pos2].FirstEdge = Node2;
+            else
+                LinkLast(G->Vexs[pos2].FirstEdge, Node2);
+        }
     }
 
     return G;

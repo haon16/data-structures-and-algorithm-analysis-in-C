@@ -204,6 +204,8 @@ void WeightedNegative(Graph G, Table T, char cBegin)
     Enqueue(Pos, Q);
 
     int *ExistInQueue = (int *)malloc(sizeof(int) * G->VexNum);     //创建一个数组，记录每个元素是否在队列中
+    if(ExistInQueue == NULL)
+        FatalError("Out of space!!!");
     memset(ExistInQueue, 0, sizeof(int) * G->VexNum);
     ExistInQueue[Pos] = 1;
 
