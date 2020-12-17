@@ -6,7 +6,18 @@
 
 #include "../1.实现/graph.h"
 
-struct TableEntry;
+#define TRUE 1
+#define FALSE 0
+#define INFINITY 65535
+#define NOTAVERTEX -1
+
+struct TableEntry
+{
+    int Known;      //该顶点是否被遍历
+    int Dist;       //当前顶点与开始顶点的距离
+    int Path;       //与当前结点连接构成边的顶点
+};
+
 typedef struct TableEntry *Table;
 
 //创建并初始化Table

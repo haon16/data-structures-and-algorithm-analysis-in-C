@@ -8,18 +8,6 @@
 #include "../../base.h"
 #include "../../04.队列/1.实现/arrayQueue.h"
 
-#define TRUE 1
-#define FALSE 0
-#define INFINITY 65535
-#define NOTAVERTEX -1
-
-struct TableEntry
-{
-    int Known;      //该顶点是否被遍历
-    int Dist;       //当前顶点与开始顶点的距离
-    int Path;       //与当前结点连接构成边的顶点
-};
-
 Table CreatTable(int VertexNum)
 {
     Table T = (Table)malloc(sizeof(struct TableEntry) * MAXVERTEX);
