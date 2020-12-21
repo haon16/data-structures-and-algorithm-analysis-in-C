@@ -67,6 +67,8 @@ void MakeTableEmpty(Table T, int VertexNum)
     }
 }
 
+/*-------------------------------------------------------------------------------------*/
+
 void UnweightShortestPath(Graph G, Table T, char cBegin)
 {
     int Pos = GetPosition(G, cBegin);
@@ -99,6 +101,8 @@ void UnweightShortestPath(Graph G, Table T, char cBegin)
 
     DisposeQueue(Q);
 }
+
+/*-------------------------------------------------------------------------------------*/
 
 int GetWeight(Graph G, int Begin, int End)
 {
@@ -179,6 +183,8 @@ void Dijkstra(Graph G, Table T, char cBegin)
         }
     }
 }
+
+/*-------------------------------------------------------------------------------------*/
 
 void WeightedNegative(Graph G, Table T, char cBegin)
 {

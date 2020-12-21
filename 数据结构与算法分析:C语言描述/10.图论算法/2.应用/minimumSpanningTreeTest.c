@@ -11,15 +11,19 @@ int main()
     Graph G = CreateGraph();
     PrintGraph(G);
 
-    Table T = CreatTable(G->VexNum);
-
-    printf("Choice : 1 for testing Prim: ");
+    printf("Choice : 1 for testing Prim, 2 for test kruskal: ");
     int n;
     scanf("%d", &n);
     switch (n)
     {
     case 1:
-        TestPrim(G, T);
+        {
+            Table T = CreatTable(G->VexNum);
+            TestPrim(G, T);
+        }
+        break;
+    case 2:
+        Kruskal(G);
         break;
     default:
         break;

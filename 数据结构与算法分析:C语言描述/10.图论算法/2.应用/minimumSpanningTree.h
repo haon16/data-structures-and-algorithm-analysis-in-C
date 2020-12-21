@@ -13,6 +13,9 @@ void PrintLinkInfoAndTotalWeight(Graph G, Table T);
 //Prim算法
 void Prim(Graph G, Table T, char cBegin);
 
+//Kruskal算法
+void Kruskal(Graph G);
+
 
 
 #endif      /* _MinimumSpanningTree_h */
