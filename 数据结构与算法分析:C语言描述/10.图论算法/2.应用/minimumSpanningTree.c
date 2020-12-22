@@ -110,14 +110,19 @@ static void SortEdgeSet(Edge E, int Length)
 {
     for(int i = 0; i < Length; i++)
     {
+        int min = i;
         for(int j = i+1; j < Length; j++)
         {
-            if(E[i].weight > E[j].weight)
+            if(E[min].weight > E[j].weight)
             {
-                struct EdgeRecord Temp = E[i];  //交换边数据
-                E[i] = E[j];
-                E[j] = Temp;
+                min = j;
             }
+        }
+        if(min != i)
+        {
+            struct EdgeRecord Temp = E[i];  //交换边数据
+            E[i] = E[min];
+            E[min] = Temp;
         }
     }
 }
@@ -137,17 +142,16 @@ void Kruskal(Graph G)
     
     for (int i = 0; i < G->EdgeNum; i++)
     {
-        PrintDisjSet(S);
         pos1 = GetPosition(G, E[i].cBegin);
         pos2 = GetPosition(G, E[i].cEnd);
-        Uset = Find(pos1, S);
-        printf("pos1=%d, Uset=%d\n", pos1, Uset);
-        Vset = Find(pos2, S);
-        printf("pos2=%d, Vset=%d\n", pos2, Vset);
+        Uset = Find(pos1+1, S);
+        //printf("pos1=%d, Uset=%d\n", pos1+1, Uset);
+        Vset = Find(pos2+1, S);
+        //printf("pos2=%d, Vset=%d\n", pos2+1, Vset);       //并查集S数组有效数据下标从1开始，而图的顶点索引是从0开始的，所以这边统一把顶点索引偏移一个单位
         if(Uset != Vset)
         {
             SetUnion(S, Uset, Vset);
-            PrintDisjSet(S);
+            //PrintDisjSet(S);
             Arr[Index++] = i;
         }
     }
