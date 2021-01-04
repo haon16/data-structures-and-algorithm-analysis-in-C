@@ -56,7 +56,7 @@ Graph CreateGraph()
     int VexNum, EdgeNum;
     printf("Input vertex number: ");
     scanf("%d", &VexNum);
-    printf("input edge number: ");
+    printf("Input edge number: ");
     scanf("%d", &EdgeNum);
     if(VexNum < 1 || VexNum > MAXVERTEX || EdgeNum < 1 || EdgeNum > VexNum*(VexNum-1))
         FatalError("Input error!!!");
